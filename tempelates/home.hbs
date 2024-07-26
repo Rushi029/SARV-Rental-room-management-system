@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+    /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333; /* Text color */
+}
+
+/* Container Styles */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Heading Styles */
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4caf50;
+}
+
+/* Navigation Bar Styles */
+.navbar {
+    background-color: #4caf50;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #55b555;
+}
+
+.active {
+    background-color: #55b555;
+}
+
+/* Form Styles */
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"],
+input[type="submit"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* Notification Styles */
+.notification-panel {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.notification {
+    margin-bottom: 10px;
+}
+
+.contact-button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+/* Chatbox Styles */
+#chatbox-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4caf50;
+}
+
+.chatbox {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    overflow-y: auto;
+    height: 300px; /* Limit height and enable scroll if content exceeds */
+}
+
+.message {
+    padding: 8px 12px;
+    border-radius: 5px;
+    max-width: 80%;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+}
+
+.owner-message {
+    background-color: #4caf50;
+    color: #fff;
+    align-self: flex-end;
+}
+
+.client-message {
+    background-color: #007bff;
+    color: #fff;
+    align-self: flex-start;
+}
+
+.message-input {
+    width: calc(100% - 90px); /* Adjust input width based on button width */
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.send-button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 80px; /* Adjust button width */
+}
+
+/* Statistics Section Styles */
+.statistics {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.statistic {
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Featured Rooms Styles */
+.featured-rooms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.room-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.room-card:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.room-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.room-card h2 {
+    margin-top: 0;
+    font-size: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.room-card p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Welcome Message Styles */
+.welcome-message {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* Contacts Page Styles */
+.contact-tab {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-tab:hover {
+    background-color: #e0e0e0;
+}
+
+.contact-tab img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.contact-name {
+    font-weight: bold;
+    color: #333;
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+    <a class="active" href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('upload')">Upload Room</a>
+    <a href="#" onclick="showPage('notifications')">Notifications</a>
+    <a href="#" onclick="showPage('contacts')">Contacts</a>
+</div>
+
+<!-- Page Content -->
+<div id="home" class="container">
+    <h1>Welcome to Room Owner Dashboard</h1>
+    <div class="welcome-message">
+        <p>Manage your rental properties with ease!</p>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="statistics">
+        <div class="statistic">
+            <h2>Total Rooms</h2>
+            <p>{{totalRooms}}</p> <!-- Display total rooms count -->
+        </div>
+        <div class="statistic">
+            <h2>Bookings</h2>
+            <p>-</p>
+        </div>
+        <div class="statistic">
+            <h2>Rented Rooms</h2>
+            <p>-</p>
+        </div>
+    </div>
+
+    <!-- Featured Rooms Section -->
+    <h2>Featured Rooms</h2>
+    <div class="featured-rooms">
+        {{#each rooms}}
+        <div class="room-card">
+            <img src="{{imageUrl}}" alt="{{title}}">
+            <h2>{{title}}</h2>
+            <p><strong>Details: </strong> {{description}}</p>
+            <p><strong>Rent/Month: </strong> {{price}}</p>
+            <p><strong>Title: </strong> {{location}}</p>
+            <a href="/room_details/{{_id}}" class="more-details-button">More Details</a> <!-- Link to room_details.html -->
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<!-- Upload Room Page -->
+<div id="upload" class="container" style="display:none">
+    <h1>Upload Room Page</h1>
+    <!-- Room Upload Form -->
+    <form action="/home" method="POST" enctype="multipart/form-data"> <!-- Add enctype attribute -->
+        <input type="text" name="title" placeholder="Title"><br>
+        <input type="text" name="description" placeholder="Description"><br>
+        <input type="number" name="price" placeholder="Price"><br>
+        <input type="text" name="location" placeholder="Location"><br>
+        <input type="file" name="image" accept="image/*"> <!-- File input for uploading images -->
+        <button type="submit">Upload Room Info</button>
+    </form>
+</div>
+
+<!-- Notifications Page -->
+<div id="notifications" class="container" style="display:none">
+    <h1>Notifications Page</h1>
+    <!-- Notification Panel -->
+    <div class="notification-panel">
+        <h2>Notifications</h2>
+        <div class="notification">
+            <strong>Sophia</strong> is interested in your room.
+            <button class="contact-button" onclick="openChat('Client Name')">Contact</button>
+        </div>
+        <!-- Add more notifications as needed -->
+    </div>
+</div>
+
+<!-- Contacts Page -->
+<div id="contacts" class="container" style="display:none">
+    <h1>Contacts Page</h1>
+    <!-- Contact Management Section -->
+    <div class="contact-tab" onclick="openChat('Sophia')">
+        <img src="profile.jpg" alt="Sophia Profile Picture">
+        <div class="contact-name">Sophia</div>
+    </div>
+    <!-- Add more contact tabs as needed -->
+</div>
+
+
+<!-- Chatbox Section -->
+<div id="chatbox" class="container" style="display:none">
+    <h1 id="chatbox-title">Contact</h1>
+    <div id="client-name-container" class="client-name-container">Chat with Sophia</div> <!-- Display "Sophia" here -->
+    <div id="chat-messages" class="chatbox">
+        <!-- Chat messages will be displayed here -->
+    </div>
+    <input type="text" id="message-input" class="message-input" placeholder="Type your message...">
+    <button onclick="sendMessage()" class="send-button">Send</button>
+</div>
+
+<!-- JavaScript for Navigation -->
+<script>
+    // Array of fake client names
+var clientNames = ["John", "Alice", "David", "Emily", "Michael", "Sophia"];
+
+// Generate a random index to select a client name
+var randomIndex = Math.floor(Math.random() * clientNames.length);
+
+// Get the client name at the random index
+var selectedClientName = clientNames[randomIndex];
+
+// Log the selected client name
+console.log("Selected client name:", selectedClientName);
+
+function showPage(pageId) {
+    // Hide all pages
+    var pages = document.getElementsByClassName("container");
+    for (var i = 0; i < pages.length; i++) {
+        pages[i].style.display = "none";
+    }
+
+    // Show the selected page
+    document.getElementById(pageId).style.display = "block";
+
+    // Remove "active" class from all navigation links
+    var navLinks = document.getElementsByClassName("navbar")[0].getElementsByTagName("a");
+    for (var i = 0; i < navLinks.length; i++) {
+        navLinks[i].classList.remove("active");
+    }
+
+    // Add "active" class to the selected navigation link
+    document.querySelector('a[href="#' + pageId + '"]').classList.add("active");
+}
+
+// JavaScript for Chatbox
+function openChat() {
+    showPage('chatbox'); // Show the chatbox page
+    document.getElementById('chat-messages').innerHTML = ''; // Clear previous messages if any
+    document.getElementById('message-input').focus(); // Focus on message input field
+
+    // Generate a random client name
+    var randomIndex = Math.floor(Math.random() * clientNames.length);
+    var clientName = clientNames[randomIndex];
+
+    // Display client name in the chatbox header
+    document.getElementById('chatbox-title').innerText = "Chat with " + clientName;
+
+    // Display client name below "Chat with Client"
+    document.getElementById('client-name-container').innerText = "Chat with " + clientName;
+
+    // Display initial message in the chatbox
+    var initialMessage = "<div class='message client-message'>Hey, I'm interested in your room. Can you provide more details?</div>";
+    document.getElementById('chat-messages').innerHTML += initialMessage;
+}
+
+function sendMessage() {
+    var message = document.getElementById('message-input').value;
+    if (message.trim() !== '') {
+        var newMessage = "<div class='message owner-message'>" + message + "</div>";
+        document.getElementById('chat-messages').innerHTML += newMessage;
+        document.getElementById('message-input').value = ''; // Clear input field after sending message
+        document.getElementById('message-input').focus(); // Focus back on message input field
+
+        // Simulate fake replies from the client
+        setTimeout(function () {
+            var reply = "";
+            if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
+                reply = "Hey";
+            }else if(message.toLowerCase().includes("Ok") || message.toLowerCase().includes("See you")){
+                reply = "Thank you";
+            } else if (message.toLowerCase().includes("?")) {
+                reply = "Yes I am, as your rooms are in my budget and in appropriate area. ";
+            }
+            else if(message.toLowerCase().includes(".")){
+                reply = "Yes I will contact you soon.";
+            }
+            var fakeReply = "<div class='message client-message'>" + reply + "</div>";
+            document.getElementById('chat-messages').innerHTML += fakeReply;
+        }, 1000); // Delay the fake reply for 1 second
+    }
+}
+function initPage() {
+            // Get the searched text from the hidden input field
+            const searchedText = document.getElementById('searched-text-input').value;
+
+            // Display the searched text in the search results section
+            document.getElementById('searched-text').textContent = searchedText;
+        }
+
+        // Call the initPage function when the page loads
+        document.addEventListener('DOMContentLoaded', initPage);
+// Show the Home page by default
+showPage("home");
+
+</script>
+</body>
+</html>
